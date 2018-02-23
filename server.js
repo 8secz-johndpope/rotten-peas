@@ -8,6 +8,25 @@ app.use(bodyParser.json());
 app.set('view engine', 'hbs');
 app.use('/static', express.static('static'));
 
+const storage = {
+  categories :
+  [ 'blogtalkradio',
+  'comedy',
+  'games-hobbies',
+  'music',
+  'occult',
+  'performing-arts',
+  'philosophy',
+  'society-culture',
+  'tech',
+  'technology',
+  'tv-film' ],
+};
+
+
+// function getCategoriesFromJson() {
+//  pick up categories('tag') from json-object and put into array in storage
+// }
 
 app.get('/', function(req, res){
   fetch('https://gpodder.net/toplist/50.json')
@@ -15,6 +34,7 @@ app.get('/', function(req, res){
     return response.json();
   }).then(function(json){
     let podcastData = json;
+    //getCategoriesFromJson(podcastData);
     res.render('index', podcastData);
   }). catch(function(error){
     res.status(500).json({error: 'Failed to get data'});
