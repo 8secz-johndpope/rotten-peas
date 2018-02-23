@@ -5,19 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/static/styles.css">
-    <title>Rotten Peas</title>
+    <title>Test</title>
   </head>
   <body>
-
     <div class="hero-image">
       <div class="hero-text">
         <h1 class="hero-title">Rotten Peas</h1>
       </div>
     </div>
-
     <div class="pod-container">
-
+      <ol>
+        {{#each this}}
+        <li>{{title}}</li>
+        {{/each}}
+      </ol>
     </div>
+
 
     <script src="static/client.js"></script>
   </body>
