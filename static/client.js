@@ -1,10 +1,33 @@
 function displayPage () {
-  const searchBar =
+  const searchBar = document.createElement('div');
+  searchBar.setAttribute(id, 'searchBar');
   //searchBar
-  //categories (fetch from server)
+
+  //categories (display curated picks (my picks) from server)
   //top5 (fetch from gPodder API)
+
+
+  fetch('https://gpodder.net/toplist/5.json')
+  .then(function(response){
+    return response.json();
+  }).then(function(json){
+    let topFivePodcasts = json;
+
+    //do stuff with top5podcasts -> call function displayTopFive(topFivePodcasts)
+
+  }). catch(function(error){
+    res.status(500).json({error: 'Failed to get data'});
+  });
+
+
   //luckySpin
+  //home button
   //
+}
+
+function displayTopFive() {
+  //display top5 on front page
+  //call displayPodcast()
 }
 
 function pickRandom() {

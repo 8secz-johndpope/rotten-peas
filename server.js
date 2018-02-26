@@ -10,17 +10,16 @@ app.use('/static', express.static('static'));
 
 const storage = {
   categories :
-  [ 'blogtalkradio',
+  ['blogtalkradio',
   'comedy',
   'games-hobbies',
   'music',
   'occult',
-  'performing-arts',
+  'performing-arts', //pop culture
   'philosophy',
-  'society-culture',
-  'tech',
   'technology',
-  'tv-film' ],
+  'tv-film' ,
+  'ubuntu'],
 };
 
 
