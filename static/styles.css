@@ -2,6 +2,11 @@ body, html {
   height: 100%;
 }
 
+h4 {
+  font-size: 24px;
+  text-align: center;
+}
+
 .hero-image {
   background-image: url("images/rachael-gorjestani-154907-unsplash.jpg");
   height: 50%;
@@ -31,7 +36,7 @@ body, html {
 
 .hero-title {
   font-family: 'Roboto Mono', monospace;
-  font-size: 50px;
+  font-size: 60px;
 }
 
 .pod-container {
@@ -46,19 +51,26 @@ body, html {
 
 .pod-table-text {
   float: left;
-  width: 80%;
+  vertical-align: middle;
+  width: 100%;
 }
 
 .pod-img {
-  max-width: 20%;
+  max-width: 80%;
 }
 
-.pod-img-cell {
-  max-width: 100px;
+.star-rating {
+  text-align: right;
 }
 
-.td {
-  
+/* table {
+  width: 100%
+} */
+
+td {
+  padding: 15px;
+  /* text-align: left; */
+  vertical-align: middle;
 }
 
 .pea btn {
@@ -181,3 +193,6 @@ body, html {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+.checked {
+    color: #58cf0f;
