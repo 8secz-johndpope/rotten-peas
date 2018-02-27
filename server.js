@@ -41,7 +41,7 @@ app.get('/', function(req, res){
 });
 
 app.get('/test', function(req,res){
-  fetch('https://gpodder.net/toplist/10.json')
+  fetch('https://gpodder.net/toplist/5.json')
   .then(function(response){
     return response.json();
   }).then(function(jsonData){

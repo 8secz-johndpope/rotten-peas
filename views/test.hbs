@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/static/styles.css">
     <title>Test</title>
@@ -32,14 +33,32 @@
           <a href="#">Ubuntu</a>
         </div>
       </div>
+      <a href="#">Random</a>
+      <input type="text" placeholder="Search..">
     </div>
     <div class="pod-container">
       <ol>
         {{#each this}}
         <li>{{title}}</li>
-        <img class="img-responsive" src="{{logo_url}}" alt="{{title}}" style="width:20%">
+
         {{/each}}
       </ol>
+
+    </div>
+    <div class="table-container">
+      <table class="table pod-table">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Top 5 Podcasts</th>
+          </tr>
+        </thead>
+        <tbody>
+
+
+        </tbody>
+      </table>
+
     </div>
 
     <script src="static/client.js"></script>
