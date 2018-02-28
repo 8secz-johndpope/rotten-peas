@@ -7,9 +7,9 @@ function displayPage () {
   .then(function(response){
     return response.json();
   }).then(function(json){
-    let topFivePodcasts = json;
-
-    topFivePodcasts.forEach(function (element) {
+    let topTenPodcasts = json;
+    document.getElementById('table-head').innerText = 'POPULAR PODCASTS';
+    topTenPodcasts.forEach(function (element) {
       if (element.title === 'This American Life') {
         element.logo_url = 'static/images/podcast-big-logo.png';
       } else if(element.logo_url === null) {
@@ -30,24 +30,37 @@ function addRow(input) {
     <img src=${input.logo_url} alt="podcast-logo" class="pod-img">
     </td>
     <td class="pod-table-text" width="75%"><a href=${input.mygpo_link}>${input.title}</a></td>
-    <td class="star-rating" width="25%">
-      <span class="fa fa-star checked"></span>
-      <span class="fa fa-star checked"></span>
-      <span class="fa fa-star checked"></span>
-      <span class="fa fa-star checked"></span>
-      <span class="fa fa-star"></span>
-    </td>
+
   `
 }
 
 displayPage();
 
 const homeButton = document.querySelector("#home");
-homeButton.addEventListener("click", function(event){console.log(event)});
+homeButton.addEventListener("click", displayPage);
 
-function searchAll() {
+const searchField = document.getElementById('submit-search');
+searchField.addEventListener("click", searchAll);
+
+function searchAll(event) {
   //search bar input - perform fetch with query
+  event.preventDefault();
+  const searchInput = document.getElementById('search-input').value;
+  getPodcastsInSearch(searchInput);
 }
+
+function getPodcastsInSearch(searchInput){
+  fetch(`https://gpodder.net/search.json?q=${searchInput}`)
+  .then(function(response){
+    return response.json();
+  }).then(function(json){
+    let results = json;
+    displayCategory(results, searchInput);
+  }).catch(function(error){
+    res.status(500).json({error: 'Failed to get data'});
+  });
+}
+
 
 function pickRandom() {
   //when lucky spin: pick random podcast

@@ -24,7 +24,7 @@ const storage = {
 
 
 app.get('/', function(req,res) {
-  res.render('test');
+  res.render('index');
 })
 
 // app.get('/', function(req, res){

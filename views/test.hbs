@@ -5,18 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/static/styles.css">
-    <title>Test</title>
+    <link rel="stylesheet" type="text/css" href="/static/test-styles.css">
+    <title>Test Peas</title>
   </head>
   <body>
-    <div class="hero-image2">
+
+    <div class="hero-image">
       <div class="hero-text">
         <h1 class="hero-title">Rotten Peas</h1>
       </div>
     </div>
 
-    <div class="navbar">
-      <a href="#home" id="home">Home</a>
+    <div class="topnav">
+      <a class="active" href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
       <div class="dropdown">
         <button class="dropbtn">Categories
           <i class="fa fa-caret-down"></i>
@@ -36,27 +39,22 @@
       </div>
 
       <a href="#">Random</a>
-      <input type="text" placeholder="Search..">
+      <div class="search-container">
+        <form action="/action_page.php">
+          <input type="text" placeholder="Search.." name="search">
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+      </div>
     </div>
 
     <div class="pod-container">
 
-    </div>
+      {{#each this}}
+      <li>{{title}}</li>
 
-    <div class="table-container">
-      <table class="table pod-table">
-        <theads>
-          <h4 id="table-head">POPULAR PODCASTS</h4>
-        </thead>
-        <tbody id="table-body">
-
-        </tbody>
-      </table>
-
+      {{/each}}
     </div>
 
     <script src="static/client.js"></script>
-
-
   </body>
 </html>
