@@ -5,6 +5,7 @@ body, html {
 h4 {
   font-size: 24px;
   text-align: center;
+  font-family: Arial;
 }
 
 .hero-image {
@@ -53,6 +54,11 @@ h4 {
   float: left;
   vertical-align: middle;
   width: 100%;
+}
+
+.pod-table-text a {
+  color: black;
+  font-family: Arial;
 }
 
 .pod-img {

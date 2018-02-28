@@ -12,6 +12,8 @@ function displayPage () {
     topFivePodcasts.forEach(function (element) {
       if (element.title === 'This American Life') {
         element.logo_url = 'static/images/podcast-big-logo.png';
+      } else if(element.logo_url === null) {
+        element.logo_url = 'static/images/podcast-big-logo.png';
       }
       addRow(element)
     });
@@ -27,7 +29,7 @@ function addRow(input) {
   <td width="18%">
     <img src=${input.logo_url} alt="podcast-logo" class="pod-img">
     </td>
-    <td class="pod-table-text" width="75%"><a href="#">${input.title}</a></td>
+    <td class="pod-table-text" width="75%"><a href=${input.mygpo_link}>${input.title}</a></td>
     <td class="star-rating" width="25%">
       <span class="fa fa-star checked"></span>
       <span class="fa fa-star checked"></span>
@@ -63,8 +65,8 @@ function pickCategory(event) {
   const category = event.target;
   const categoryTitle = category.innerText;
   const tag = category.getAttribute('id');
-  console.log(category.innerText);
-  console.log(tag);
+  // console.log(category.innerText);
+  // console.log(tag);
   getPodcastsInCategory(tag, categoryTitle);
 }
 
@@ -86,10 +88,14 @@ function displayCategory(input, title) {
   document.getElementById('table-body').innerHTML = '';
 
   input.forEach(function(element){
-    console.log(element.title, element.logo_url);
+    // console.log(element.title, element.logo_url);
+    if (element.title === 'This American Life') {
+      element.logo_url = 'static/images/podcast-big-logo.png';
+    } else if(element.logo_url === null) {
+      element.logo_url = 'static/images/podcast-big-logo.png';
+    }
     addRow(element)
   });
-
   //pick a podcast
 }
 
