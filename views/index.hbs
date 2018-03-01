@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/static/styles.css">
     <title>Rotten Peas</title>
   </head>
   <body>
-    <div class="hero-image2">
+    <div class="hero-image">
       <div class="hero-text">
         <h1 class="hero-title">Rotten Peas</h1>
       </div>
@@ -35,7 +35,7 @@
         </div>
       </div>
 
-      <a href="#">Random</a>
+      <a href="#" id="random">Pick a Podcast for me</a>
       <div class="search-container">
         <form action="/">
           <input type="text" id="search-input" placeholder="Search.." name="search">
@@ -48,19 +48,17 @@
 
     </div>
 
-    <div class="pod-container">
+    <div class="pod-container" id="pod-container">
 
-    </div>
-
-    <div class="table-container">
-      <table class="table pod-table">
-        <theads>
-          <h4 id="table-head"></h4>
-        </thead>
-        <tbody id="table-body">
-
-        </tbody>
-      </table>
+      <div class="table-container">
+        <table class="table pod-table">
+          <thead>
+            <h4 id="table-head"></h4>
+          </thead>
+          <tbody id="table-body">
+          </tbody>
+        </table>
+      </div>
 
     </div>
 

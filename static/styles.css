@@ -3,21 +3,18 @@ body, html {
 }
 
 h4 {
-  font-size: 24px;
+  font-size: 30px;
   text-align: center;
-  font-family: Arial;
+  font-family: 'Roboto', sans-serif;
+}
+
+h5 {
+  font-size: 16px;
+  text-align: left;
+  font-family: 'Roboto', sans-serif;
 }
 
 .hero-image {
-  background-image: url("images/rachael-gorjestani-154907-unsplash.jpg");
-  height: 50%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-}
-
-.hero-image2 {
   background-image: url("images/peas-pod-pea-pod-green-40788.jpeg");
   height: 50%;
   background-position: center;
@@ -42,12 +39,13 @@ h4 {
 }
 
 .pod-container {
-  max-width: 500px;
+  max-width: 600px;
   margin: auto;
+  min-height: 600px;
 }
 
 .pod-table {
-  max-width: 500px;
+  max-width: 600px;
   margin: auto;
 }
 
@@ -59,7 +57,7 @@ h4 {
 
 .pod-table-text a {
   color: black;
-  font-family: Arial;
+  font-family: 'Roboto', sans-serif;;
   overflow: hidden;
 }
 
@@ -91,7 +89,7 @@ td {
   -webkit-border-radius: 20;
   -moz-border-radius: 20;
   border-radius: 20px;
-  font-family: Arial;
+  font-family: 'Roboto', sans-serif;;
   color: #ffffff;
   font-size: 20px;
   padding: 10px 20px 10px 20px;
@@ -112,7 +110,7 @@ td {
 .navbar {
   overflow: hidden;
   background-color: #7CB518;
-  font-family: Arial;
+  font-family: 'Roboto', sans-serif;
   border: solid #5C8001 2px;
 }
 
@@ -267,6 +265,6 @@ td {
    text-align: center;
    overflow: hidden;
    background-color: #7CB518;
-   font-family: Arial;
+   font-family: 'Roboto', sans-serif;;
    border: solid #5C8001 2px;
 }

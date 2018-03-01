@@ -27,18 +27,6 @@ app.get('/', function(req,res) {
   res.render('index');
 })
 
-// app.get('/', function(req, res){
-//   fetch('https://gpodder.net/toplist/50.json')
-//   .then(function(response){
-//     return response.json();
-//   }).then(function(json){
-//     let podcastData = json;
-//     //getCategoriesFromJson(podcastData);
-//     res.render('index', podcastData);
-//   }). catch(function(error){
-//     res.status(500).json({error: 'Failed to get data'});
-//   });
-// });
 
 app.get('/test', function(req,res){
   fetch('https://gpodder.net/toplist/5.json')
@@ -53,6 +41,9 @@ app.get('/test', function(req,res){
 })
 
 
+app.listen(process.env.PORT || 5000, function(){
+  console.log('I am listening on port 5000');
+});
 
 app.listen(8080, function(){
   console.log('I am listening on port 8080');

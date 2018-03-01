@@ -1,6 +1,20 @@
 const table = document.querySelector('.pod-table');
 
-function displayPage () {
+const homeButton = document.querySelector("#home");
+homeButton.addEventListener("click", goHome);
+
+const dropdownCategories = document.querySelectorAll(".category");
+dropdownCategories.forEach(element => element.addEventListener("click", pickCategory));
+
+const randomPick = document.getElementById('random');
+randomPick.addEventListener("click", pickRandomCategory);
+
+const searchField = document.getElementById('submit-search');
+searchField.addEventListener("click", searchAll);
+
+displayPage();
+
+function displayPage() {
   //categories (display curated picks (my picks) from server)
   //top10 (fetch from gPodder API)
   fetch('https://gpodder.net/toplist/10.json')
@@ -9,6 +23,8 @@ function displayPage () {
   }).then(function(json){
     let topTenPodcasts = json;
     document.getElementById('table-head').innerText = 'POPULAR PODCASTS';
+    document.getElementById('table-body').innerHTML = '';
+
     topTenPodcasts.forEach(function (element) {
       if (element.title === 'This American Life') {
         element.logo_url = 'static/images/podcast-big-logo.png';
@@ -24,23 +40,27 @@ function displayPage () {
 }
 
 function addRow(input) {
+  //inserts row in display table
   const row = table.insertRow(-1);
+  row.setAttribute('id', 'table-row');
   row.innerHTML = `
-  <td width="18%">
+  <td class="td1" width="18%">
     <img src=${input.logo_url} alt="podcast-logo" class="pod-img">
     </td>
-    <td class="pod-table-text" width="75%"><a href=${input.mygpo_link}>${input.title}</a></td>
-
+    <td class="pod-table-text td2"  id=${input.url} width="75%"><a href=#>${input.title}</a></td>
   `
+  row.addEventListener("click", getPodcast);
 }
 
-displayPage();
 
-const homeButton = document.querySelector("#home");
-homeButton.addEventListener("click", displayPage);
 
-const searchField = document.getElementById('submit-search');
-searchField.addEventListener("click", searchAll);
+
+function goHome(event) {
+  event.preventDefault();
+  displayPage();
+}
+
+
 
 function searchAll(event) {
   //search bar input - perform fetch with query
@@ -62,14 +82,36 @@ function getPodcastsInSearch(searchInput){
 }
 
 
-function pickRandom() {
+function pickRandomCategory(event) {
   //when lucky spin: pick random podcast
   //fetch from gPodder API
- // link to gPodder-player
+  event.preventDefault();
+  fetch('https://gpodder.net/api/2/tags/100.json')
+  .then(function(response){
+    return response.json();
+  }).then(function(json){
+    let results = json;
+    const randomCategory = results[Math.floor(Math.random()*results.length)];
+    const randomTag = randomCategory.tag;
+    getRandomPodcastFromRandomCategory(randomTag)
+  }).catch(function(error){
+    res.status(500).json({error: 'Failed to get data'});
+  });
 }
 
-const dropdownCategories = document.querySelectorAll(".category");
-dropdownCategories.forEach(element => element.addEventListener("click", pickCategory));
+function getRandomPodcastFromRandomCategory(tag) {
+  fetch(`https://gpodder.net/api/2/tag/${tag}/100.json`)
+  .then(function(response){
+    return response.json();
+  }).then(function(json){
+    let results = json;
+    const randomPodcast = results[Math.floor(Math.random()*results.length)];
+    displayPodcast(randomPodcast);
+  }).catch(function(error){
+    res.status(500).json({error: 'Failed to get data'});
+  });
+}
+
 
 function pickCategory(event) {
   //choose category (eventListener)
@@ -78,8 +120,6 @@ function pickCategory(event) {
   const category = event.target;
   const categoryTitle = category.innerText;
   const tag = category.getAttribute('id');
-  // console.log(category.innerText);
-  // console.log(tag);
   getPodcastsInCategory(tag, categoryTitle);
 }
 
@@ -101,7 +141,6 @@ function displayCategory(input, title) {
   document.getElementById('table-body').innerHTML = '';
 
   input.forEach(function(element){
-    // console.log(element.title, element.logo_url);
     if (element.title === 'This American Life') {
       element.logo_url = 'static/images/podcast-big-logo.png';
     } else if(element.logo_url === null) {
@@ -109,15 +148,51 @@ function displayCategory(input, title) {
     }
     addRow(element)
   });
-  //pick a podcast
 }
 
-function displayPodcast() {
+
+
+function getPodcast(event) {
+  event.preventDefault();
+  const target = this.childNodes;
+  const targetUrl = target[3].id;
+
+  fetch(`https://gpodder.net/api/2/data/podcast.json?url=${targetUrl}`)
+  .then(function(response){
+    return response.json();
+  }).then(function(json){
+    let results = json;
+    displayPodcast(results);
+  }).catch(function(error){
+    res.status(500).json({error: 'Failed to get data'});
+  });
+}
+
+function displayPodcast(input) {
   //display chosen podcast:
-  //fetch podcast from gPodder API
   //url, description, link to listen at gPodder (or show episode data?)
   //rate and review
+  document.getElementById('table-head').innerText = input.title;
+  document.getElementById('table-body').innerHTML = '';
+
+  document.getElementById('table-body').innerHTML = `
+    <tr>
+      <td class="td1" width="30%">
+        <img src=${input.logo_url} alt="podcast-logo" class="pod-img">
+      </td>
+      <td class="pod-table-text td2" id="description" width="75%"><h5>${input.description}</h5></td>
+    </tr>
+    <tr>
+      <td class="td1" width="18%"></td>
+      <td class="pod-table-text td2" id="website" width="75%"><a href=${input.website} target="_blank">Go to ${input.title}</a></td>
+    </tr>
+    <tr>
+      <td class="td1" width="18%"></td>
+      <td class="pod-table-text td2" id="gPodderUrl" width="75%"><a href=${input.mygpo_link} target="_blank">Listen at gPodder</a></td>
+    </tr>
+  `
 }
+
 
 function reviewPodcast() {
   //review podcast
@@ -147,13 +222,6 @@ function reviewPodcast() {
 //   //displayContainer.appendChild('displayTable');
 //   //call displayPodcast() when one is clicked
 //
-// }
-
-
-// function displayCategories() {
-//   //get categories from server
-//   //fetch categories from storage on server
-//   //display clickable categories - dropdown??
 // }
 
 //credit <div>Icons made by <a href="https://www.flaticon.com/authors/icomoon" title="Icomoon">Icomoon</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
