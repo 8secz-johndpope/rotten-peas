@@ -17,6 +17,7 @@ const searchField = document.getElementById('submit-search');
 searchField.addEventListener("click", searchAll);
 
 // ============ LANDING PAGE BLOCK
+//displayPage function is being called on initial page load, which sets off the rest of the functions.
 
 displayPage();
 
