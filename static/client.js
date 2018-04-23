@@ -1,4 +1,8 @@
+// ============ TABLE VARIABLE FROM DOM
+
 const table = document.querySelector('.pod-table');
+
+// ============ TOP MENU BLOCK
 
 const homeButton = document.querySelector("#home");
 homeButton.addEventListener("click", goHome);
@@ -11,6 +15,8 @@ randomPick.addEventListener("click", pickRandomCategory);
 
 const searchField = document.getElementById('submit-search');
 searchField.addEventListener("click", searchAll);
+
+// ============ LANDING PAGE BLOCK
 
 displayPage();
 
@@ -53,14 +59,12 @@ function addRow(input) {
 }
 
 
-
-
 function goHome(event) {
   event.preventDefault();
   displayPage();
 }
 
-
+// ============ SEARCH ALL PODCASTS BLOCK
 
 function searchAll(event) {
   //search bar input - perform fetch with query
@@ -81,6 +85,7 @@ function getPodcastsInSearch(searchInput){
   });
 }
 
+// ============ CHOOSE RANDOM PODCAST BLOCK
 
 function pickRandomCategory(event) {
   //when lucky spin: pick random podcast
@@ -112,6 +117,7 @@ function getRandomPodcastFromRandomCategory(tag) {
   });
 }
 
+// ============ CHOOSE CATEGORIES BLOCK
 
 function pickCategory(event) {
   //choose category (eventListener)
@@ -150,7 +156,7 @@ function displayCategory(input, title) {
   });
 }
 
-
+// ============ GET AND DISPLAY PODCAST BLOCK
 
 function getPodcast(event) {
   event.preventDefault();
