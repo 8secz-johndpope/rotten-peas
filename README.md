@@ -13,19 +13,19 @@ The site allows the user to choose a podcast category or submit search query for
 
 There are 10 categories from which the user can choose. The categories are: BlogTalkRadio, Comedy, Games & Hobbies, Music, Occult, Pop Culture, Philosophy, Technology, TV & Film, Ubuntu. These are categories that I have chosen from Gpodders catalogue. There are many other categories available, many overlapping, and I made a choice to not include all categories.
 
-#### Frameworks used
+### Frameworks used
 
 Rotten Peas was created using Node.js, Express routes, restful API principles and rendering using Handlebars as template.
 The site functionality is mainly down to DOM-manipulation. 
 
 The site is styled using CSS.
 
-##### Potential features 
+### Potential features 
 
 * Embedded podcast player that allows the user to listen directly without being directed to Gpodder
 * Rating function that allows the user to rate a podcast and see other users rating of a particular podcast
 
-###### See it live
+### See it live
 
 This project is deployed on heroku for free. This means that the connection isn't always awake; it will take longer to load than a page that is permanently awake. I appreciate your patience.
 
